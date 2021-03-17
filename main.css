@@ -1,0 +1,105 @@
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+
+    transition: 0.5s all;
+}
+
+html {
+    font-size: 10px;
+    overflow: hidden;
+}
+
+body {
+    background-color: #f5f6fa;
+    color: #3d3d3d;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.hexagon-container {
+    margin: auto;
+    position: relative;
+    box-sizing: content-box;
+}
+
+.hexagon-block {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hexagon-block svg {
+    stroke: #BBADA0;
+    overflow: hidden;
+}
+
+
+.hexagon-block svg polygon {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hexagon-block-text {
+    stroke: #3d3d3d;
+    font-weight: 900;
+    font-size: 3rem;
+}
+.hexagon-block-text-light {
+    stroke: #FFFFFF;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.hexagon-block-fill-undefined {
+    fill: #CDC1B4;
+}
+
+.hexagon-block-fill-2 {
+    fill: #EEE4DA;
+}
+
+.hexagon-block-fill-4 {
+    fill: #EEE1C9;
+
+}
+
+.hexagon-block-fill-8 {
+    fill: #F3B27A;
+}
+
+.hexagon-block-fill-16 {
+    fill: #F69664;
+}
+
+.hexagon-block-fill-32 {
+    fill: #F77C5F;
+}
+
+.hexagon-block-fill-64 {
+    fill: #F75F3B;
+}
+
+.hexagon-block-fill-128 {
+    fill: #eb4d4b;
+}
+
+.hexagon-block-fill-256 {
+    fill: #eb4d4b;
+}
+
+.hexagon-block-fill-512 {
+    fill: #d63031;
+}
+
