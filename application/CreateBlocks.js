@@ -11,7 +11,7 @@ const CreateHexagonContainer = (appContainer) => {
     appContainer.appendChild(hexagonContainer)
     window.setTimeout(() => {
         hexagonContainer.classList.remove('small-in')
-    }, 500)
+    }, 100)
     return hexagonContainer
 }
 

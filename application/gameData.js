@@ -1,6 +1,6 @@
 import {CONFIGURATION} from './configuration.js'
 import {UpdateCurrentMaximumElement, UpdatePolygon} from './rendering.js'
-import {resultBlock} from './CreateBlocks.js'
+import {resultBlock} from './createBlocks.js'
 
 export const CreateGameArray = () => {
     const game = []
@@ -62,8 +62,8 @@ export const MoveNumbers = (indexFrom, indexTo, game) => {
         game[indexFrom] = undefined
     }
 
-    UpdatePolygon(indexFrom, game)
-    UpdatePolygon(indexTo, game)
+    //UpdatePolygon(indexFrom, game)
+    //UpdatePolygon(indexTo, game)
 }
 
 export const PerformMovements = (movement, game) => {
@@ -125,10 +125,11 @@ export const GenerateOneMoreNumber = (game) => {
     const index = temp[Math.floor(Math.random() * temp.length)]
     game[index] = Math.random() <= CONFIGURATION.probabilityOfGenerating2 ? 2 : 4
 
-    UpdatePolygon(index, game)
+    UpdatePolygon(index, game, true)
 }
 
 export const ComputeKey = (event, game, currentMaximum) => {
+    const gameCopy = game.slice()
     let movement = ""
     switch (event.code) {
         case 'KeyQ': {
@@ -159,10 +160,27 @@ export const ComputeKey = (event, game, currentMaximum) => {
             return
     }
     if (PerformMovements(movement, game) === true) {
-        window.setTimeout(() => GenerateOneMoreNumber(game), 500)
+        game.forEach((position, index, array) => {
+            game[index] !== gameCopy[index] && UpdatePolygon(index, array)
+        })
+        window.setTimeout(() => GenerateOneMoreNumber(game), 700)
         currentMaximum = Math.max(...game.filter(positionState => positionState !== undefined))
         UpdateCurrentMaximumElement(resultBlock, currentMaximum)
     }
+}
+
+export const IsLoss = (game) => {
+    const gameCopy = game.slice()
+    let wasMovement = false
+
+    for (const key in PossibleMovements)
+    {
+        wasMovement = wasMovement || PerformMovements(key, gameCopy)
+        if (wasMovement === true)
+            return false
+    }
+
+    return true
 }
 
 export let currentMaximum = 2

@@ -1,5 +1,5 @@
 import {CONFIGURATION} from './configuration.js'
-import {hexagonBlocks} from './CreateBlocks.js'
+import {hexagonBlocks} from './createBlocks.js'
 
 export const ArrangeBlocks = (blocks) => {
 
@@ -52,7 +52,9 @@ height="${CONFIGURATION.halfOfHexagonHeight * 2 + CONFIGURATION.generalPadding /
 }
 
 
-export const UpdatePolygon = (index, game) => {
+export const UpdatePolygon = (index, game, newOne = false) => {
+
+
     const polygon = (hexagonBlocks[index].getElementsByTagName('polygon'))[0],
         polygonText = (hexagonBlocks[index].getElementsByTagName('text'))[0]
 
@@ -64,6 +66,17 @@ export const UpdatePolygon = (index, game) => {
         ''))
 
     polygon.classList.add(CONFIGURATION.classBackground + (game[index] !== undefined ? game[index] : 'undefined'))
+
+    if (newOne === true)
+    {
+        polygon.classList.add('small-new')
+        window.setTimeout(() => polygon.classList.remove('small-new'), 250)
+        return
+    }
+    if (game[index] !== undefined) {
+        polygon.classList.add('small')
+        window.setTimeout(() => polygon.classList.remove('small'), 250)
+    }
 }
 
 export const UpdateCurrentMaximumElement = (resultBlock, currentMaximum) => resultBlock.textContent = currentMaximum
